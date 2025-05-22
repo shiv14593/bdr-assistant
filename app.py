@@ -137,6 +137,13 @@ Combine this with research on the event and the ticketing company above to produ
                 st.subheader("🧭 Tailored Question Funnel")
                 st.markdown(funnel_output)
 
+                try:
+                    st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
+                except Exception as e:
+                    st.error(f"Download button failed: {e}")
+            except Exception as e:
+                st.error(f"Something went wrong: {e}")
+
 if st.session_state.funnel_generated:
     st.markdown("---")
     st.subheader("➕ More Questions Generator")
@@ -156,22 +163,3 @@ if st.session_state.funnel_generated:
                 st.markdown(more_output)
             except Exception as e:
                 st.error(f"Could not generate more questions: {e}")
-
-    try:
-                    followup_prompt = f"Please give 2–3 open-ended, thoughtful sales questions specifically about this topic: {more_topic}"
-                    followup_response = client.chat.completions.create(
-                        model="gpt-3.5-turbo",
-                        messages=[
-                            {"role": "system", "content": "You help BDRs ask sharp, open-ended sales questions."},
-                            {"role": "user", "content": followup_prompt}
-                        ]
-                    )
-                    more_output = followup_response.choices[0].message.content
-                    st.markdown(more_output)
-                except Exception as e:
-                    st.error(f"Could not generate more questions: {e}")
-
-        try:
-            st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
-        except Exception as e:
-            st.error(f"Download button failed: {e}")
