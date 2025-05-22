@@ -53,15 +53,11 @@ if tickets_sold and avg_ticket_price:
         qualification_status = "✅ Qualified 😊"
     else:
         qualification_status = (
-            "❌ Disqualified 😢
-
-"
-            "Reason: Below revenue threshold.
-"
+            "❌ Disqualified 😢\n\n"
+            "Reason: Below revenue threshold.\n"
             "Speak to your line manager if you believe this deal could bring brand equity, strategic value, or long-term partnership potential."
         )
-
-    st.subheader(f"{qualification_status}")
+    st.subheader(qualification_status)
 
 st.header("📝 Fill Out Call Details")
 tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
@@ -124,7 +120,6 @@ The BDR has indicated they would like to find a way to talk about the following 
 
 Combine this with research on the event and the ticketing company above to produce a tailored question funnel that sets the BDR up for a strategic and relevant conversation.'''
 
-
                 funnel_response = client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
@@ -143,3 +138,4 @@ Combine this with research on the event and the ticketing company above to produ
 
             except Exception as e:
                 st.error(f"Something went wrong: {e}")
+            
