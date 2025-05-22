@@ -57,7 +57,7 @@ if tickets_sold and avg_ticket_price:
 
 st.header("📝 Fill Out Call Details")
 tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
-    transcript = st.text_area("📄 What would you like to talk about in this call with the client?", placeholder='Marketing, handling large on-sales, membership ticketing, reserved seating, ticketing page design, etc.', height=200)
+transcript = st.text_area("📄 What would you like to talk about in this call with the client?", placeholder='Marketing, handling large on-sales, membership ticketing, reserved seating, ticketing page design, etc.', height=200)
     ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
         "Secutix", "Skiddle", "Ticketmaster", "Universe", "Vivenu"
