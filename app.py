@@ -93,5 +93,4 @@ Transcript Insight:
                 funnel_output = funnel_response.choices[0].message.content
                 st.subheader("🧭 Tailored Question Funnel")
                 with st.container():
-                    for line in funnel_output.split("
-"):
+                    for line in funnel_output.split(""):
