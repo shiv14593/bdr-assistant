@@ -51,41 +51,50 @@ with st.expander("📝 Fill out call details"):
 
 log_data = []
 
-if st.button("💡 Get Suggested Questions"):
+if st.button("💡 Get Tailored Question Funnel"):
     if not transcript.strip():
         st.warning("Please paste a transcript to proceed.")
     else:
-        with st.spinner("Thinking..."):
+        with st.spinner("Building tailored question funnel..."):
             try:
-                prompt = f"""
-You are a helpful assistant for a BDR in the ticketing industry.
-The prospect currently uses {ticketing_company} for ticketing, and operates in the {vertical} vertical.
-Based on the following sales call transcript, suggest 3 short, high-quality open-ended discovery questions (1 sentence each) that the BDR can ask next.
+                funnel_prompt = f"""
+You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
+The organizer currently uses {ticketing_company} and operates in the {vertical} vertical.
 
-Transcript:
+Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
+
+Avoid diving into Tixr product details. Instead, help the BDR guide a conversation that builds trust and curiosity. Structure the output as:
+
+1. **Intro Question** (Warm, open-ended)
+2. **Context Question** (Current setup)
+3. **Pain Exploration** (Highlight potential friction)
+4. **Vision Question** (What would great look like?)
+5. **Close Question** (Segues to booking a follow-up)
+
+Transcript Insight:
 {transcript}
                 """
 
-                response = client.chat.completions.create(
+                funnel_response = client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
-                        {"role": "system", "content": "You help BDRs ask smart, concise discovery questions."},
-                        {"role": "user", "content": prompt}
+                        {"role": "system", "content": "You help BDRs guide smart, structured first conversations."},
+                        {"role": "user", "content": funnel_prompt}
                     ]
                 )
 
-                suggestions = response.choices[0].message.content
-                st.subheader("🤖 Suggested Questions:")
-                st.markdown(suggestions)
+                funnel_output = funnel_response.choices[0].message.content
+                st.subheader("🧭 Tailored Question Funnel")
+                st.markdown(funnel_output)
 
                 log_data.append({
                     "timestamp": datetime.datetime.now().isoformat(),
-                    "type": "question_suggestions",
+                    "type": "question_funnel",
                     "ticketing_company": ticketing_company,
                     "vertical": vertical,
                     "prospect_name": prospect_name,
                     "transcript": transcript,
-                    "suggestions": suggestions
+                    "funnel": funnel_output
                 })
 
             except Exception as e:
