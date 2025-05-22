@@ -92,7 +92,7 @@ Transcript Insight:
                     "type": "question_funnel",
                     "ticketing_company": ticketing_company,
                     "vertical": vertical,
-                    "prospect_name": prospect_name,
+                    "prospect_website": prospect_website,
                     "transcript": transcript,
                     "funnel": funnel_output
                 })
@@ -131,7 +131,11 @@ if prospect_website and st.button("🔍 Research This Prospect"):
     with st.spinner("Researching the prospect (mock data only)..."):
         try:
             prospect_prompt = f"""
-You're helpin
+You're helping a BDR prepare to speak with an event organizer. Here's their website: {prospect_website}
+
+Analyze the type of organizer based on the website. Suggest what types of events they likely run, any unique value propositions they seem to offer, and what a BDR should know before a first conversation. Assume the BDR wants to be informed but not overwhelm the prospect.
+If you cannot access the website, provide a generic briefing format they can follow.
+            """
             prospect_response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
@@ -139,7 +143,7 @@ You're helpin
                     {"role": "user", "content": prospect_prompt}
                 ]
             )
-            st.subheader(f"🔍 Prospect Briefing: {prospect_name}")
+            st.subheader(f"🔍 Prospect Briefing: {prospect_website}")
             st.markdown(prospect_response.choices[0].message.content)
 
             log_data.append({
