@@ -45,8 +45,7 @@ st.caption("Qualify faster. Sound smarter. Learn quicker.")
 with st.expander("📝 Fill out call details"):
     tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
     transcript = st.text_area("📄 Paste Transcript", value='Based on my research, this organiser will be asking questions about:', height=200)
-    vertical = st.selectbox("🎯 Choose Event Vertical", ["Music", "Comedy", "Sports", "Festivals", "Venues", "Other"])
-    ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
+        ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
         "Secutix", "Skiddle", "Ticketmaster", "Universe", "Vivenu"
     ])
@@ -62,7 +61,7 @@ if st.button("💡 Get Tailored Question Funnel"):
             try:
                 funnel_prompt = f"""
 You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
-The organizer currently uses {ticketing_company} and operates in the {vertical} vertical.
+The organizer currently uses {ticketing_company}.
 
 Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
 
