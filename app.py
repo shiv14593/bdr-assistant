@@ -61,14 +61,14 @@ if st.button("💡 Get Tailored Question Funnel"):
         with st.spinner("Building tailored question funnel..."):
             try:
                 funnel_prompt = f"""
-You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organiser.
+You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
 The organizer currently uses {ticketing_company} and operates in the {vertical} vertical.
 
 Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
 
 Avoid diving into product details. Use Tixr's name where helpful to establish relevance or contrast. For example, if you're referring to the BDR's knowledge or product fit, say "Tixr offers..." or "Tixr is known for..."
 
-Make the tone {tone.lower()}, conversational, and natural — as if a UK-based BDR were chatting over coffee with the organiser. Keep it practical and human, not robotic or scripted. Mention Tixr where it's genuinely helpful, not pushy.
+Make the tone {tone.lower()}, conversational, and natural — as if a BDR were chatting casually with the organizer. Keep it practical and human, not robotic or scripted. Mention Tixr where it's genuinely helpful, not pushy.
 
 Structure the output as:
 
@@ -93,4 +93,10 @@ Transcript Insight:
                 funnel_output = funnel_response.choices[0].message.content
                 st.subheader("🧭 Tailored Question Funnel")
                 st.markdown(funnel_output)
-                st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
+                try:
+                    st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
+                except Exception as e:
+                    st.error(f"Download button failed: {e}")
+
+            except Exception as e:
+                st.error(f"Something went wrong: {e}")
