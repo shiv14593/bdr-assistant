@@ -49,7 +49,7 @@ avg_ticket_price = st.number_input("💷 Average ticket price (£)", min_value=0
 if tickets_sold and avg_ticket_price:
     gross_revenue = tickets_sold * avg_ticket_price
     estimated_tixr_share = gross_revenue * 0.05
-    qualification_status = "✅ Qualified" if estimated_tixr_share >= 20000 else "❌ Disqualified"
+    qualification_status = "✅ Qualified 😊" if estimated_tixr_share >= 20000 else "❌ Disqualified 😢"
 
     st.subheader(f"{qualification_status}")
 
