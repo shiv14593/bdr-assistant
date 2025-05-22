@@ -39,4 +39,8 @@ Transcript:
                 )
 
                 suggestions = response.choices[0].message.content
-                st.subheader("🤖 Suggested Questions
+                st.subheader("🤖 Suggested Questions:")
+                st.markdown(suggestions)
+
+            except Exception as e:
+                st.error(f"Something went wrong: {e}")
