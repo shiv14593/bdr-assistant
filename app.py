@@ -149,7 +149,7 @@ If you cannot access the website, provide a generic briefing format they can fol
             log_data.append({
                 "timestamp": datetime.datetime.now().isoformat(),
                 "type": "prospect_research",
-                "prospect_name": prospect_name,
+                "prospect_website": prospect_website,
                 "content": prospect_response.choices[0].message.content
             })
 
