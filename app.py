@@ -61,7 +61,7 @@ if st.button("💡 Get Tailored Question Funnel"):
             try:
                 funnel_prompt = f"""
 You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
-The organizer currently uses {ticketing_company}.
+The organizer currently uses {ticketing_company}. Use your knowledge of where {ticketing_company} typically falls short or gets criticized in the industry to craft strategic discovery questions that uncover potential gaps.
 
 Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
 
@@ -93,6 +93,8 @@ Structure the output as:
 
 The BDR has indicated they would like to find a way to talk about the following topics during the call:
 {transcript}
+
+Combine this with research on the event and the ticketing company above to produce a tailored question funnel that sets the BDR up for a strategic and relevant conversation.
                 """
 
                 funnel_response = client.chat.completions.create(
