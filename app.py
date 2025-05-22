@@ -49,7 +49,17 @@ avg_ticket_price = st.number_input("💷 Average ticket price (£)", min_value=0
 if tickets_sold and avg_ticket_price:
     gross_revenue = tickets_sold * avg_ticket_price
     estimated_tixr_share = gross_revenue * 0.05
-    qualification_status = "✅ Qualified 😊" if estimated_tixr_share >= 20000 else "❌ Disqualified 😢\n\nReason: Below revenue threshold\nSpeak to your line manager if you believe this deal could bring brand equity, strategic value, or long-term partnership potential."
+    if estimated_tixr_share >= 20000:
+        qualification_status = "✅ Qualified 😊"
+    else:
+        qualification_status = (
+            "❌ Disqualified 😢
+
+"
+            "Reason: Below revenue threshold.
+"
+            "Speak to your line manager if you believe this deal could bring brand equity, strategic value, or long-term partnership potential."
+        )
 
     st.subheader(f"{qualification_status}")
 
