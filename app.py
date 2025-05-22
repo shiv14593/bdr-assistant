@@ -47,7 +47,7 @@ with st.expander("📝 Fill out call details"):
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
         "Secutix", "Skiddle", "Ticketmaster", "Universe", "Vivenu"
     ])
-    prospect_name = st.text_input("👤 Prospect or Event Organizer Name (optional)")
+    prospect_website = st.text_input("🌐 Prospect Website URL (optional)")
 
 log_data = []
 
@@ -127,14 +127,11 @@ Keep it brief and helpful for a BDR preparing for a competitive sales call.
         except Exception as e:
             st.error(f"Something went wrong: {e}")
 
-if prospect_name and st.button("🔍 Research This Prospect"):
+if prospect_website and st.button("🔍 Research This Prospect"):
     with st.spinner("Researching the prospect (mock data only)..."):
         try:
             prospect_prompt = f"""
-Give a quick briefing for a BDR going into a meeting with an event organizer or prospect named '{prospect_name}'.
-Summarize what they might be known for, the type of events they organize, and any notable past partnerships or challenges.
-If no real data is available, provide a generic template or useful guidance.
-            """
+You're helpin
             prospect_response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
