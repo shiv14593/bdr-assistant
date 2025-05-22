@@ -41,7 +41,7 @@ st.caption("Qualify faster. Sound smarter. Learn quicker.")
 
 # Input section
 with st.expander("📝 Fill out call details"):
-    transcript = st.text_area("📄 Paste Transcript", value='I think this organiser will be asking questions about:', height=200)
+    transcript = st.text_area("📄 Paste Transcript", value='Based on my research, this organiser will be asking questions about:', height=200)
     vertical = st.selectbox("🎯 Choose Event Vertical", ["Music", "Comedy", "Sports", "Festivals", "Venues", "Other"])
     ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
