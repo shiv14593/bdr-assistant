@@ -45,7 +45,7 @@ st.caption("Qualify faster. Sound smarter. Learn quicker.")
 with st.expander("📝 Fill out call details"):
     tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
     transcript = st.text_area("📄 Paste Transcript", value='Based on my research, this organiser will be asking questions about:', height=200)
-        ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
+    ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
         "Secutix", "Skiddle", "Ticketmaster", "Universe", "Vivenu"
     ])
@@ -89,7 +89,7 @@ Structure the output as:
 
 5. **Close Questions** (2–3 natural segues to book a follow-up with a BDM)
    - *Tip:* These should feel casual but confident — open the door for the next step.
-   - *Example Answer:* "Yeah, happy to book in a time next week to explore further."(2–3 natural segues to book a follow-up with a BDM)
+   - *Example Answer:* "Yeah, happy to book in a time next week to explore further."
 
 Transcript Insight:
 {transcript}
