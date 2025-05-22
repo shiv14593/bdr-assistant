@@ -63,7 +63,9 @@ The organizer currently uses {ticketing_company} and operates in the {vertical} 
 
 Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
 
-Avoid diving into Tixr product details. Instead, help the BDR guide a conversation that builds trust and curiosity. Structure the output as:
+Avoid diving into product details. Use Tixr's name where helpful to establish relevance or contrast. For example, if you're referring to the BDR's knowledge or product fit, say "Tixr offers..." or "Tixr is known for..."
+
+Structure the output as:
 
 1. **Intro Question** (Warm, open-ended)
 2. **Context Question** (Current setup)
