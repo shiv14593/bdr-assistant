@@ -72,11 +72,25 @@ Make the tone {tone.lower()}, conversational, and natural — as if a BDR were c
 
 Structure the output as:
 
-1. **Intro Question** (Warm, open-ended)
-2. **Context Question** (Current setup)
-3. **Pain Exploration** (Highlight potential friction)
-4. **Vision Question** (What would great look like?)
-5. **Close Question** (Segues to booking a follow-up)
+1. **Intro Questions** (2–3 short, warm questions to start the conversation)
+   - *Tip:* Use these to show you've done your homework and break the ice.
+   - *Example Answer:* "We’ve been looking to expand our pre-sale reach lately."
+
+2. **Context Questions** (2–3 short questions about their current setup)
+   - *Tip:* Focus on what they’re using today and how it works for them.
+   - *Example Answer:* "We mostly rely on manual check-ins through [platform]."
+
+3. **Pain Exploration Questions** (2–3 concise questions to uncover friction)
+   - *Tip:* Use these to surface known weaknesses in their current platform.
+   - *Example Answer:* "Reporting’s been a bit patchy — hard to get clear insights quickly."
+
+4. **Vision Questions** (2–3 impactful prompts to understand what they want)
+   - *Tip:* Prompt them to picture a better experience — that’s where Tixr fits in.
+   - *Example Answer:* "I’d love something that can automate more of our comp tracking."
+
+5. **Close Questions** (2–3 natural segues to book a follow-up with a BDM)
+   - *Tip:* These should feel casual but confident — open the door for the next step.
+   - *Example Answer:* "Yeah, happy to book in a time next week to explore further."(2–3 natural segues to book a follow-up with a BDM)
 
 Transcript Insight:
 {transcript}
