@@ -51,9 +51,7 @@ if tickets_sold and avg_ticket_price:
     estimated_tixr_share = gross_revenue * 0.05
     qualification_status = "✅ Qualified" if estimated_tixr_share >= 20000 else "❌ Disqualified"
 
-    st.markdown(f"**Estimated Gross Revenue:** £{gross_revenue:,.2f}")
-    st.markdown(f"**5% Estimate (Tixr Potential):** £{estimated_tixr_share:,.2f}")
-    st.markdown(f"**Qualification Status:** {qualification_status}")
+    st.subheader(f"{qualification_status}")
 
 st.header("📝 Fill Out Call Details")
 tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
