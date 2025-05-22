@@ -92,6 +92,5 @@ Transcript Insight:
 
                 funnel_output = funnel_response.choices[0].message.content
                 st.subheader("🧭 Tailored Question Funnel")
-                with st.container():
-                    for line in funnel_output.split("
-"):
+                st.markdown(funnel_output)
+                st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
