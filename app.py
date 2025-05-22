@@ -105,6 +105,9 @@ if st.button("🧠 Research This Ticketing Company"):
         try:
             company_prompt = f"""
 Give a short overview of {ticketing_company}. List its typical clients, main features, and common criticisms or challenges event organizers face when using it.
+
+Then, compare it briefly to Tixr. Highlight 3 clear advantages or differentiators that Tixr offers over {ticketing_company}, especially ones that a BDR could mention during a first conversation.
+
 Keep it brief and helpful for a BDR preparing for a competitive sales call.
             """
             company_response = client.chat.completions.create(
