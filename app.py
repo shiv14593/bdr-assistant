@@ -94,7 +94,3 @@ Transcript Insight:
                 st.subheader("🧭 Tailored Question Funnel")
                 with st.container():
                     for line in funnel_output.split("\n"):
-    if line.strip().startswith("1.") or line.strip().startswith("2.") or line.strip().startswith("3.") or line.strip().startswith("4.") or line.strip().startswith("5."):
-        st.markdown(f"### {line.strip()}")
-    elif line.strip():
-        st.markdown(f"<div style='padding-left:1.2rem; margin-bottom:1rem;'>{line.strip()}</div>", unsafe_allow_html=True)
