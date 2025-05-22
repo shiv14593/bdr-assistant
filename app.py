@@ -13,17 +13,25 @@ st.set_page_config(page_title="BDR Assistant", layout="centered")
 st.markdown("""
 <style>
     .main {
-        background-color: #f9f9f9;
+        background-color: #f0f2f6;
     }
     .block-container {
-        padding-top: 2rem;
+        padding-top: 1.5rem;
     }
-    .stTextArea textarea {
-        background-color: #ffffff;
-        border: 1px solid #cccccc;
+    .stTextArea textarea, .stSelectbox, .stTextInput input {
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 15px;
     }
-    .stSelectbox, .stTextInput {
-        background-color: #ffffff;
+    .stButton > button {
+        background-color: #0056b3;
+        color: white;
+        border-radius: 0.4rem;
+        font-weight: bold;
+    }
+    .stButton > button:hover {
+        background-color: #004099;
     }
 </style>
 """, unsafe_allow_html=True)
