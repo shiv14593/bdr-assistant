@@ -42,6 +42,19 @@ st.title("🎧 Tixr BDR Call Assistant")
 st.caption("Qualify faster. Sound smarter. Learn quicker.")
 
 # Input section
+st.header("📈 Deal Size Calculator")
+tickets_sold = st.number_input("🎟️ Tickets sold in last 12 months", min_value=0, step=10)
+avg_ticket_price = st.number_input("💷 Average ticket price (£)", min_value=0.0, step=0.5)
+
+if tickets_sold and avg_ticket_price:
+    gross_revenue = tickets_sold * avg_ticket_price
+    estimated_tixr_share = gross_revenue * 0.05
+    qualification_status = "✅ Qualified" if estimated_tixr_share >= 20000 else "❌ Disqualified"
+
+    st.markdown(f"**Estimated Gross Revenue:** £{gross_revenue:,.2f}")
+    st.markdown(f"**5% Estimate (Tixr Potential):** £{estimated_tixr_share:,.2f}")
+    st.markdown(f"**Qualification Status:** {qualification_status}")
+
 with st.expander("📝 Fill out call details"):
     tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
     transcript = st.text_area("📄 What would you like to talk about in this call with the client?", placeholder='Marketing, handling large on-sales, membership ticketing, reserved seating, ticketing page design, etc.', height=200)
@@ -70,6 +83,13 @@ Avoid diving into product details. Use Tixr's name where helpful to establish re
 Make the tone {tone.lower()}, conversational, and natural — as if a BDR were chatting casually with the organizer. Keep it practical and human, not robotic or scripted. Mention Tixr where it's genuinely helpful, not pushy.
 
 Structure the output as:
+
+Before generating the funnel, include at least one open-ended question to understand the opportunity size and timing:
+- Ask about total ticket volume over the past 12 months.
+- Ask about average ticket price.
+- Ask whether they're actively exploring new solutions or have a timeline in mind.
+
+Then continue with the following structure:
 
 1. **Intro Questions** (2–3 short, warm questions to start the conversation)
    - *Tip:* Use these to show you've done your homework and break the ice.
