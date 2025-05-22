@@ -44,7 +44,7 @@ st.caption("Qualify faster. Sound smarter. Learn quicker.")
 # Input section
 with st.expander("📝 Fill out call details"):
     tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
-    transcript = st.text_area("📄 Paste Transcript", value='Based on my research, this organiser will be asking questions about:', height=200)
+    transcript = st.text_area("📄 What would you like to talk about in this call with the client?", value='Marketing, handling large on-sales, membership ticketing, reserved seating, ticketing page design', height=200)
     ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
         "AXS", "Dice", "Easol", "Eventbrite", "Eventim", "Fatsoma", "Gigantic", "SeeTickets",
         "Secutix", "Skiddle", "Ticketmaster", "Universe", "Vivenu"
@@ -91,7 +91,7 @@ Structure the output as:
    - *Tip:* These should feel casual but confident — open the door for the next step.
    - *Example Answer:* "Yeah, happy to book in a time next week to explore further."
 
-Transcript Insight:
+The BDR has indicated they would like to find a way to talk about the following topics during the call:
 {transcript}
                 """
 
