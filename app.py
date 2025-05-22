@@ -23,8 +23,8 @@ if st.button("💡 Get Suggested Questions"):
         with st.spinner("Thinking..."):
             try:
                 prompt = f"""
-You are a helpful assistant for a BDR in the ticketing industry.
-Based on the following sales call transcript and the vertical ({vertical}), suggest 3 high-quality open-ended discovery questions the BDR can ask next.
+You are a helpful assistant for a BDR in the UK ticketing industry.
+Based on the following sales call transcript and the vertical ({vertical}), suggest 3 high-quality but short and clear open-ended discovery questions the BDR can ask next. The goal here is to help BDRs train but also in a live enviornment ask questions on the fly
 
 Transcript:
 {transcript}
