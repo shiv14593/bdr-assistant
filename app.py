@@ -72,7 +72,7 @@ if st.button("💡 Get Tailored Question Funnel"):
     else:
         with st.spinner("Building tailored question funnel..."):
             try:
-                funnel_prompt = f"""
+                funnel_prompt = f'''
 You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
 The organizer currently uses {ticketing_company}. Use your knowledge of where {ticketing_company} typically falls short or gets criticized in the industry to craft strategic discovery questions that uncover potential gaps.
 
@@ -82,4 +82,56 @@ Avoid diving into product details. Use Tixr's name where helpful to establish re
 
 Make the tone {tone.lower()}, conversational, and natural — as if a BDR were chatting casually with the organizer. Keep it practical and human, not robotic or scripted. Mention Tixr where it's genuinely helpful, not pushy.
 
-Structure the out
+Structure the output as:
+
+Before generating the funnel, include at least one open-ended question to understand the opportunity size and timing:
+- Ask about total ticket volume over the past 12 months.
+- Ask about average ticket price.
+- Ask whether they're actively exploring new solutions or have a timeline in mind.
+
+Then continue with the following structure:
+
+1. **Intro Questions** (2–3 short, warm questions to start the conversation)
+   - *Tip:* Use these to show you've done your homework and break the ice.
+   - *Example Answer:* "We’ve been looking to expand our pre-sale reach lately."
+
+2. **Context Questions** (2–3 short questions about their current setup)
+   - *Tip:* Focus on what they’re using today and how it works for them.
+   - *Example Answer:* "We mostly rely on manual check-ins through [platform]."
+
+3. **Pain Exploration Questions** (2–3 concise questions to uncover friction)
+   - *Tip:* Use these to surface known weaknesses in their current platform.
+   - *Example Answer:* "Reporting’s been a bit patchy — hard to get clear insights quickly."
+
+4. **Vision Questions** (2–3 impactful prompts to understand what they want)
+   - *Tip:* Prompt them to picture a better experience — that’s where Tixr fits in.
+   - *Example Answer:* "I’d love something that can automate more of our comp tracking."
+
+5. **Close Questions** (2–3 natural segues to book a follow-up with a BDM)
+   - *Tip:* These should feel casual but confident — open the door for the next step.
+   - *Example Answer:* "Yeah, happy to book in a time next week to explore further."
+
+The BDR has indicated they would like to find a way to talk about the following topics during the call:
+{transcript}
+
+Combine this with research on the event and the ticketing company above to produce a tailored question funnel that sets the BDR up for a strategic and relevant conversation.'''
+
+
+                funnel_response = client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": "You help BDRs guide smart, structured first conversations."},
+                        {"role": "user", "content": funnel_prompt}
+                    ]
+                )
+
+                funnel_output = funnel_response.choices[0].message.content
+                st.subheader("🧭 Tailored Question Funnel")
+                st.markdown(funnel_output)
+                try:
+                    st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
+                except Exception as e:
+                    st.error(f"Download button failed: {e}")
+
+            except Exception as e:
+                st.error(f"Something went wrong: {e}")
