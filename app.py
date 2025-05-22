@@ -70,6 +70,8 @@ prospect_website = st.text_input("🌐 Prospect Website URL (optional)")
 
 log_data = []
 
+additional_topic = st.text_input("💬 Give me more questions about...")
+
 if st.button("💡 Get Tailored Question Funnel"):
     if not transcript.strip():
         st.warning("Please fill in what you'd like to talk about.")
@@ -118,7 +120,9 @@ Then continue with the following structure:
 The BDR has indicated they would like to find a way to talk about the following topics during the call:
 {transcript}
 
-Combine this with research on the event and the ticketing company above to produce a tailored question funnel that sets the BDR up for a strategic and relevant conversation.'''
+Combine this with research on the event and the ticketing company above to produce a tailored question funnel that sets the BDR up for a strategic and relevant conversation.
+
+If the BDR has requested more questions about a specific topic, generate 2–3 additional open-ended questions about: {additional_topic}'''
 
                 funnel_response = client.chat.completions.create(
                     model="gpt-3.5-turbo",
@@ -138,4 +142,3 @@ Combine this with research on the event and the ticketing company above to produ
 
             except Exception as e:
                 st.error(f"Something went wrong: {e}")
-            
