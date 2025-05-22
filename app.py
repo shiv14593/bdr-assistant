@@ -10,6 +10,8 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
 
 st.set_page_config(page_title="BDR Assistant", layout="centered")
+st.image("https://uploads-ssl.webflow.com/63b4b77234c56e3301c2d31a/63b4c0ebed7bda69d179d276_tixr_logo.svg", width=180)
+
 st.markdown("""
 <style>
     .main {
@@ -41,6 +43,7 @@ st.caption("Qualify faster. Sound smarter. Learn quicker.")
 
 # Input section
 with st.expander("📝 Fill out call details"):
+    tone = st.selectbox("🗣️ Choose Tone", ["Friendly", "Professional", "Direct", "Playful"])
     transcript = st.text_area("📄 Paste Transcript", value='Based on my research, this organiser will be asking questions about:', height=200)
     vertical = st.selectbox("🎯 Choose Event Vertical", ["Music", "Comedy", "Sports", "Festivals", "Venues", "Other"])
     ticketing_company = st.selectbox("🎟️ What ticketing company does the prospect currently use?", [
@@ -58,12 +61,14 @@ if st.button("💡 Get Tailored Question Funnel"):
         with st.spinner("Building tailored question funnel..."):
             try:
                 funnel_prompt = f"""
-You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organizer.
+You are a sales assistant helping a BDR at Tixr prepare for their first conversation with a new event organiser.
 The organizer currently uses {ticketing_company} and operates in the {vertical} vertical.
 
 Your job is to create a concise but effective question funnel — a sequence of thoughtful, tailored questions the BDR can ask to understand the prospect’s needs, uncover friction with their current platform, and naturally lead toward booking a deeper discovery call with a BDM.
 
 Avoid diving into product details. Use Tixr's name where helpful to establish relevance or contrast. For example, if you're referring to the BDR's knowledge or product fit, say "Tixr offers..." or "Tixr is known for..."
+
+Make the tone {tone.lower()}, conversational, and natural — as if a UK-based BDR were chatting over coffee with the organiser. Keep it practical and human, not robotic or scripted. Mention Tixr where it's genuinely helpful, not pushy.
 
 Structure the output as:
 
@@ -87,7 +92,16 @@ Transcript Insight:
 
                 funnel_output = funnel_response.choices[0].message.content
                 st.subheader("🧭 Tailored Question Funnel")
-                st.markdown(funnel_output)
+                with st.container():
+                    for line in funnel_output.split("
+"):
+                        if line.strip().startswith("1."):
+                            st.markdown(f"### {line.strip()}")
+                        elif line.strip().startswith("2.") or line.strip().startswith("3.") or line.strip().startswith("4.") or line.strip().startswith("5."):
+                            st.markdown(f"### {line.strip()}")
+                        elif line.strip():
+                            st.markdown(f"<div style='padding-left:1.2rem; margin-bottom:1rem;'>{line.strip()}</div>", unsafe_allow_html=True)
+                st.download_button("📋 Copy All Questions", funnel_output, file_name="tixr_question_funnel.txt")
 
                 log_data.append({
                     "timestamp": datetime.datetime.now().isoformat(),
@@ -106,7 +120,7 @@ if st.button("🧠 Research This Ticketing Company"):
     with st.spinner("Gathering quick insights..."):
         try:
             company_prompt = f"""
-Give a short overview of {ticketing_company}. List its typical clients, main features, and common criticisms or challenges event organizers face when using it.
+Give a short overview of {ticketing_company}. List its typical clients, main features, and common criticisms or challenges event organisers face when using it.
 
 Then, compare it briefly to Tixr. Highlight 3 clear advantages or differentiators that Tixr offers over {ticketing_company}, especially ones that a BDR could mention during a first conversation.
 
@@ -144,7 +158,7 @@ If you cannot access the website, provide a generic briefing format they can fol
             prospect_response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "You help BDRs quickly research prospects or organizers."},
+                    {"role": "system", "content": "You help BDRs quickly research prospects or organisers."},
                     {"role": "user", "content": prospect_prompt}
                 ]
             )
